@@ -1,7 +1,14 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
 
-app.listen(4000, () => {
-  console.log("Server is running on port 4000");
+//test route
+app.get("/", (req, res) => {
+  res.json({ message: "Bienvenido a la app" });
+});
+
+app.listen(process.env.PORT, () => {
+  console.log("Escuchando en puerto:", process.env.PORT);
 });

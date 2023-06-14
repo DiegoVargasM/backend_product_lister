@@ -17,6 +17,11 @@ router.post("/", (req, res) => {
   res.json({ mssg: "post one product" });
 });
 
+//delete one product
+router.delete("/:id", (req, res) => {
+  res.json({ mssg: "delete one product" });
+});
+
 //update one product
 router.put("/:id", (req, res) => {
   res.json({ mssg: "update one product" });

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 //get all products
 const getAllProducts = async (req, res) => {
-  const products = await Product.find().sort({ createdAt: -1 });
+  const products = await Product.find({}).sort({ createdAt: -1 });
 
   res.status(200).json(products);
 };

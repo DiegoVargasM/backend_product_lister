@@ -1,8 +1,9 @@
 require("dotenv").config();
 
 const express = require("express");
+const mongoose = require("mongoose");
 
-//importar rutas de productos
+//importar rutas
 const productsRoutes = require("./routes/products.routes");
 
 const app = express();
@@ -18,6 +19,15 @@ app.use((req, res, next) => {
 
 app.use("/api/productos", productsRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log("Escuchando en puerto:", process.env.PORT);
-});
+//conectar a la base de datos
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("Escuchando en puerto:", process.env.PORT);
+    });
+    console.log("Conectado a la base de datos");
+  })
+  .catch((err) => {
+    console.log(err);
+  });

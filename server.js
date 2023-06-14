@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/productos", productsRoutes);
+app.use("/api/products", productsRoutes);
 
 //conectar a la base de datos
 mongoose

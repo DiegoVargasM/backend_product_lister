@@ -10,18 +10,18 @@ const productSchema = new Schema(
       minlength: 3,
       maxlength: 50,
     },
+    category: {
+      type: String,
+      required: true,
+    },
     amount: {
       type: Number,
       required: true,
       min: 0,
     },
-    category: {
-      type: String,
-      required: true,
-    },
     aditional_info: {
       type: String,
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }

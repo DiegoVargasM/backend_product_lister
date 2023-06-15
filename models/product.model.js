@@ -21,7 +21,7 @@ const productSchema = new Schema(
     },
     aditional_info: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true }

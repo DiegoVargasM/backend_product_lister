@@ -32,6 +32,20 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const { product_name, amount, category, aditional_info } = req.body;
 
+  let emptyFields = [];
+  if (!product_name) emptyFields.push("product_name");
+  if (!amount) emptyFields.push("amount");
+  if (!category) emptyFields.push("category");
+
+  if (emptyFields.length > 0) {
+    return res.status(400).json({
+      error: `Te falta completar las siguientes entradas obligatorias: ${emptyFields.join(
+        ", "
+      )}`,
+      emptyFields,
+    });
+  }
+
   try {
     const product = await Product.create({
       product_name,

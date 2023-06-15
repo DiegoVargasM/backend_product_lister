@@ -40,6 +40,7 @@ const createProduct = async (req, res) => {
       aditional_info,
     });
     res.status(200).json({ product });
+    console.log("new product added to db", product);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

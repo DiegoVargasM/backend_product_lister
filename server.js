@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 //importar rutas
 const productsRoutes = require("./routes/products.routes");
+const usersRoutes = require("./routes/users.routes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/products", productsRoutes);
+app.use("/api/user", usersRoutes);
 
 //conectar a la base de datos
 mongoose

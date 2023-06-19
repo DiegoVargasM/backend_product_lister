@@ -1,5 +1,14 @@
 //import model
 const User = require("../models/user.model");
+//import jwt
+const jwt = require("jsonwebtoken");
+
+//function to create jwt token
+//we pass id because we want to use it in the payload
+const createToken = (_id) => {
+  //arguments: payload, secret, options
+  jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
 
 //login user
 const loginUser = async (req, res) => {

@@ -7,7 +7,12 @@ const {
   updateProduct,
 } = require("../controllers/product.controller");
 
+const requireAuth = require("../middleware/requireAuth");
+
 const router = express.Router();
+
+//middleware to ensure user is authenticated
+router.use(requireAuth);
 
 //get all products
 router.get("/", getAllProducts);

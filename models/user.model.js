@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 
 const userSchema = new Schema({
   email: {
@@ -15,8 +16,18 @@ const userSchema = new Schema({
 });
 
 //static signup method
-//(no arrow function bc we need to use "this" keyword)
 userSchema.statics.signup = async function (email, password) {
+  //validation
+  if (!email || !password) {
+    throw Error("Email and password are required");
+  }
+  if (!validator.isEmail(email)) {
+    throw Error("Email is not valid");
+  }
+  if (password.length < 6) {
+    throw Error("Password must be at least 6 characters");
+  }
+
   const exists = await this.findOne({ email });
   if (exists) {
     //we dont have access to res here so we throw an error

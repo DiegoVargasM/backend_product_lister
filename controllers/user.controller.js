@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 //we pass id because we want to use it in the payload
 const createToken = (_id) => {
   //arguments: payload, secret, options
-  jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
 
 //login user

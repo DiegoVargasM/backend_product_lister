@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 
 //get all products
 const getAllProducts = async (req, res) => {
-  const products = await Product.find({}).sort({ createdAt: -1 });
+  const user_id = req.user._id;
+  //only find documents that match the current user_id
+  const products = await Product.find({ user_id }).sort({ createdAt: -1 });
 
   res.status(200).json(products);
 };
@@ -47,11 +49,13 @@ const createProduct = async (req, res) => {
   }
 
   try {
+    const user_id = req.user._id;
     const product = await Product.create({
       product_name,
       amount,
       category,
       aditional_info,
+      user_id,
     });
     res.status(200).json({ product });
     console.log("new product added to db", product);

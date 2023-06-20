@@ -35,9 +35,9 @@ const createProduct = async (req, res) => {
   const { product_name, amount, category, aditional_info } = req.body;
 
   let emptyFields = [];
-  if (!product_name) emptyFields.push("product_name");
-  if (!amount) emptyFields.push("amount");
-  if (!category) emptyFields.push("category");
+  if (!product_name) emptyFields.push("Title");
+  if (!category) emptyFields.push("Category");
+  if (!amount) emptyFields.push("Amount");
 
   if (emptyFields.length > 0) {
     return res.status(400).json({

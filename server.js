@@ -9,7 +9,10 @@ const usersRoutes = require("./routes/users.routes");
 
 const app = express();
 
+// busca un body en el request, si encuentra
+// le hace un parse a json y lo agrega al request como req.body
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 

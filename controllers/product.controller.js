@@ -16,7 +16,7 @@ const getProduct = async (req, res) => {
   const { id } = req.params;
   //verificar si el id es valido
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "Product not found" });
+    return res.status(404).json({ error: "Product id is not valid" });
   }
 
   const product = await Product.findById(id);

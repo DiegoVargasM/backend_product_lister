@@ -3,25 +3,25 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-//importar rutas
+// importar rutas
 const productsRoutes = require("./routes/products.routes");
 const usersRoutes = require("./routes/users.routes");
 
 const app = express();
 
-// busca un body en el request, si encuentra
-// le hace un parse a json y lo agrega al request como req.body
+// busca si el request tiene un body y lo agrega (req.body)
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-//middleware para loggear los request
+// middleware para loggear los request
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
 
+// middleware rutas
 app.use("/api/products", productsRoutes);
 app.use("/api/user", usersRoutes);
 

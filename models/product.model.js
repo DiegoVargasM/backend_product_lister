@@ -17,6 +17,13 @@ const productSchema = new Schema(
     amount: {
       type: Number,
       required: true,
+      validate: {
+        validator: function (value) {
+          // Verifica si el valor es un número positivo
+          return value >= 0;
+        },
+        message: 'El campo "amount" debe ser un número positivo.',
+      },
     },
     aditional_info: {
       type: String,

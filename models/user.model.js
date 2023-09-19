@@ -15,6 +15,11 @@ const userSchema = new Schema({
   },
 });
 
+// crear un metodo estatico para el cifrado de contraseñas
+// ayuda a mantener la organizacion y encapsulacion al mantener
+// la logica de contraseñas en el lugar correcto, promueve la reutilizacion
+// de codigo y facilita las pruebas unitarias
+
 //static signup method
 userSchema.statics.signup = async function (email, password) {
   //validation

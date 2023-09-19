@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+// validator evita que tengamos que usar regex para validar
 const validator = require("validator");
 
 const userSchema = new Schema({
@@ -15,14 +16,15 @@ const userSchema = new Schema({
   },
 });
 
-// crear un metodo estatico para el cifrado de contraseñas
+// crear un metodo estatico para el cifrado de contraseñas y validacion
 // ayuda a mantener la organizacion y encapsulacion al mantener
-// la logica de contraseñas en el lugar correcto, promueve la reutilizacion
+// la logica de contraseñas en el lugar correcto, promueve la reutilizacion (DRY)
 // de codigo y facilita las pruebas unitarias
 
 //static signup method
 userSchema.statics.signup = async function (email, password) {
   //validation
+  // tiramos mensajes personalizados para mejorar la experiencia del usuario
   if (!email || !password) {
     throw Error("Email and password are required");
   }

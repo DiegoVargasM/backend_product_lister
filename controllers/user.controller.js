@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 //function to create jwt token (id in payload)
 const createToken = (_id) => {
   //arguments: payload, secret, options
-  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "1d" });
 };
 
 //login user
